@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo App</title>
+  <style>
+    /* CSS for styling the Todo app */
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .todo-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .todo-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      transition: background-color 0.2s;
+    }
+
+    .todo-item:hover {
+      background-color: #e6e6e6;
+    }
+
+    .completed {
+      text-decoration: line-through;
+      color: #999;
+    }
+
+    .btn {
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="app">
+    <h1>Todo App</h1>
+    <input type="text" placeholder="Add a new task" v-model="newTask" @keyup.enter="addTask">
+    <ul class="todo-list">
+      <li v-for="(task, index) in tasks" :key="index" class="todo-item">
+        <span :class="{ completed: task.completed }">{{ task.text }}</span>
+        <button class="btn" @click="completeTask(index)">Complete</button>
+        <button class="btn" @click="deleteTask(index)">Delete</button>
+      </li>
+    </ul>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.11/dist/vue.global.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          newTask: '',
+          tasks: []
+        };
+      },
+      methods: {
+        addTask() {
+          if (this.newTask.trim() !== '') {
+            this.tasks.push({ text: this.newTask, completed: false });
+            this.newTask = '';
+          }
+        },
+        completeTask(index) {
+          this.tasks[index].completed = !this.tasks[index].completed;
+        },
+        deleteTask(index) {
+          this.tasks.splice(index, 1);
+        }
+      }
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>

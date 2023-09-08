@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue 3 Experiment</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.11/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Vue 3 Experiment</h1>
+    </header>
+    
+    <section>
+      <h2>Conditional Rendering Example</h2>
+
+      <div>
+        <h3>v-show Example</h3>
+        <button @click="toggleParagraph">Toggle Paragraph</button>
+        <p v-show="showParagraph">This paragraph is shown/hidden using v-show.</p>
+      </div>
+
+      <div>
+        <h3>v-for Example</h3>
+        <ul>
+          <li v-for="(item, index) in items" :key="index">{{ item }}</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>v-if / v-else Example</h3>
+        <button @click="toggleMessage">Toggle Message</button>
+        <p v-if="showMessage">This is a message when showMessage is true.</p>
+        <p v-else>This is a message when showMessage is false.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Form Input Example</h2>
+      <div>
+        <label for="inputText">Input Text:</label>
+        <input type="text" id="inputText" v-model="inputValue">
+        <p>You entered: {{ inputValue }}</p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          showParagraph: true,
+          showMessage: true,
+          items: ['Item 1', 'Item 2', 'Item 3'],
+          inputValue: ''
+        };
+      },
+      methods: {
+        toggleParagraph() {
+          this.showParagraph = !this.showParagraph;
+        },
+        toggleMessage() {
+          this.showMessage = !this.showMessage;
+        }
+      }
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>
