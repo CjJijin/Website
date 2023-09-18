@@ -5,42 +5,51 @@
     <title>JavaScript Concepts</title>
 </head>
 <body>
+    <h2>JavaScript Output</h2>
+    <div id="output"></div>
+
     <script>
+        // Function to display output on the webpage
+        function displayOutput(outputText) {
+            const outputElement = document.getElementById('output');
+            outputElement.innerHTML += `<p>${outputText}</p>`;
+        }
+
         // a. String methods
         const str = "Hello, World!";
-        console.log(str.length); // Length of the string
-        console.log(str.toUpperCase()); // Convert to uppercase
-        console.log(str.toLowerCase()); // Convert to lowercase
-        console.log(str.indexOf("World")); // Find the index of a substring
-        console.log(str.split(", ")); // Split the string into an array
+        displayOutput(`Length of the string: ${str.length}`);
+        displayOutput(`Convert to uppercase: ${str.toUpperCase()}`);
+        displayOutput(`Convert to lowercase: ${str.toLowerCase()}`);
+        displayOutput(`Find the index of 'World': ${str.indexOf("World")}`);
+        displayOutput(`Split the string: ${str.split(", ").join(', ')}`);
 
         // b. Number methods
         const num = 42.5678;
-        console.log(num.toFixed(2)); // Round to 2 decimal places
-        console.log(num.toString()); // Convert to a string
-        console.log(Number.isNaN(num)); // Check if it's NaN
-        console.log(Math.floor(num)); // Round down to the nearest integer
-        console.log(Math.random()); // Generate a random number between 0 and 1
+        displayOutput(`Round to 2 decimal places: ${num.toFixed(2)}`);
+        displayOutput(`Convert to a string: ${num.toString()}`);
+        displayOutput(`Is NaN? ${Number.isNaN(num)}`);
+        displayOutput(`Round down to the nearest integer: ${Math.floor(num)}`);
+        displayOutput(`Generate a random number: ${Math.random()}`);
 
         // c. Array methods
         const myArray = [1, 2, 3, 4, "five", 6, "seven"];
-        console.log(myArray.length); // Length of the array
-        console.log(myArray.join(", ")); // Join array elements into a string
-        console.log(myArray.slice(1, 4)); // Extract a sub-array
-        console.log(myArray.indexOf("five")); // Find the index of an element
-        console.log(myArray.concat([8, 9])); // Concatenate arrays
+        displayOutput(`Length of the array: ${myArray.length}`);
+        displayOutput(`Join array elements: ${myArray.join(", ")}`);
+        displayOutput(`Extract a sub-array: ${myArray.slice(1, 4).join(', ')}`);
+        displayOutput(`Find the index of 'five': ${myArray.indexOf("five")}`);
+        displayOutput(`Concatenate arrays: ${myArray.concat([8, 9]).join(', ')}`);
 
         // d. Date methods
         const today = new Date();
-        console.log(today.toDateString()); // Date in a readable format
-        console.log(today.getFullYear()); // Get the year
-        console.log(today.getMonth()); // Get the month (0-11)
-        console.log(today.getDate()); // Get the day of the month
-        console.log(today.getHours()); // Get the hour
+        displayOutput(`Date in a readable format: ${today.toDateString()}`);
+        displayOutput(`Get the year: ${today.getFullYear()}`);
+        displayOutput(`Get the month (0-11): ${today.getMonth()}`);
+        displayOutput(`Get the day of the month: ${today.getDate()}`);
+        displayOutput(`Get the hour: ${today.getHours()}`);
 
         // e. Function Methods
         function greet(name) {
-            console.log(`Hello, ${name}!`);
+            displayOutput(`Hello, ${name}!`);
         }
         const sayHello = greet;
         sayHello("John");
@@ -49,7 +58,7 @@
             return a + b;
         }
         const result = add(5, 3);
-        console.log(result);
+        displayOutput(`Addition result: ${result}`);
     </script>
 </body>
 </html>
